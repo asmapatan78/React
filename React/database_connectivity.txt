@@ -1,0 +1,97 @@
+
+
+npm install mysql2
+node hello.js
+
+
+Q1. database creativity
+var mysql = require('mysql2');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  con.query("CREATE DATABASE kavin", function (err, result) {
+    if (err) throw err;
+    console.log("Database created");
+  });
+});
+
+
+Q2. create table
+var mysql = require('mysql2');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database:'kavin'
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  
+  con.query("CREATE table Students(name varchar(10) , branch varchar(10))", function (err, result) {
+    if (err) throw err;
+    console.log("table created");
+  });
+});
+
+
+Q3.insert Values
+
+var mysql = require('mysql2');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database:'kavin'
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  
+  con.query("insert into Students values('vardha','mca')", function (err, result) {
+    if (err) throw err;
+    console.log("1 record inserted");
+  });
+});
+
+
+Q4. insert multiple values
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  
+  con.query("insert into Students values('vardha','mca'),('mitra','mba')", function (err, result) {
+    if (err) throw err;
+    console.log("2 records inserted");
+  });
+});
+
+Q5.delete 
+var mysql = require('mysql2');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database:'kavin'
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  var sql = "DELETE FROM Students WHERE branch = 'mba'";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Number of records deleted: " + result.affectedRows);
+  });
+});

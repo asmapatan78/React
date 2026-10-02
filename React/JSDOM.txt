@@ -1,0 +1,301 @@
+DOM (Document Object Model) events in web development are actions that happen in the browser, which JavaScript can respond to. These events include user interactions (like clicks and key presses), as well as changes in the state of the page (like loading, resizing, or submitting a form).
+
+Common DOM Events
+Here are some common DOM events:
+
+Mouse Events:
+
+click: Fired when an element is clicked.
+dblclick: Fired when an element is double-clicked.
+mouseover: Fired when the mouse pointer moves over an element.
+mouseout: Fired when the mouse pointer moves out of an element.
+mousemove: Fired when the mouse pointer moves within an element.
+mousedown: Fired when a mouse button is pressed down on an element.
+mouseup: Fired when a mouse button is released over an element.
+Keyboard Events:
+
+keydown: Fired when a key is pressed down.
+keyup: Fired when a key is released.
+keypress: Fired when a key is pressed down and held (deprecated).
+Form Events:
+
+submit: Fired when a form is submitted.
+change: Fired when the value of an input element changes.
+input: Fired when the value of an input or textarea is changed.
+focus: Fired when an element gains focus.
+blur: Fired when an element loses focus.
+Window Events:
+
+load: Fired when the whole page has loaded, including all dependent resources (images, scripts, etc.).
+resize: Fired when the browser window is resized.
+scroll: Fired when the document view or an element is scrolled.
+Document Events:
+
+DOMContentLoaded: Fired when the HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.
+
+ONclick:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="alert('Welome To DOM')">Click Me</button>
+
+    <button id="btn1">DOM onclick Property</button>
+
+    <button id="btn2">By using Addeventlistner</button>
+    <script>
+        document.getElementById("btn1").onclick = function(){
+            alert("This Is property based")
+        }
+        document.getElementById("btn2").addEventListener("click",function(){
+            alert("By using add event listener")
+        })
+    </script>
+</body>
+</html>
+
+
+<body>
+    <input type="text" name="" id="inp1" placeholder="Tpye something...">
+    <button id="btn1">DOM onclick Property</button>
+    <h1 id="dis"></h1>
+<script>
+        document.getElementById("btn1").onclick = function(){
+            let val=document.getElementById("inp1").value;
+            document.getElementById("dis").innerHTML=val;
+        }
+    </script>
+</body>
+
+
+
+
+Event Propagation
+Event Bubbling: Events triggered on an element first trigger on that element, then bubble up to the parent elements.
+Event Capturing: The opposite of bubbling, where the event is first captured by the outermost element and then propagated to the target.
+You can control the event flow using methods like event.stopPropagation() and event.preventDefault().
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Propagation Example</title>
+</head>
+<body>
+    <div id="outerDiv" style="padding: 20px; background-color: lightblue;">
+        Outer Div
+        <div id="innerDiv" style="padding: 20px; background-color: lightgreen;">
+            Inner Div
+        </div>
+    </div>
+
+    <script>
+        const outerDiv = document.getElementById('outerDiv');
+        const innerDiv = document.getElementById('innerDiv');
+
+        outerDiv.addEventListener('click', function() {
+            alert('Outer Div Clicked!');
+        });
+
+        innerDiv.addEventListener('click', function(event) {
+            alert('Inner Div Clicked!');
+            // Stop the event from propagating to the outer div
+            event.stopPropagation();
+        });
+    </script>
+</body>
+</html>
+
+3. Hide and Show Elements
+This example hides or shows a paragraph when a button is clicked.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hide and Show Elements</title>
+</head>
+<body>
+    <p id="text">This text can be hidden or shown.</p>
+    <button id="toggleTextBtn">Hide/Show Text</button>
+
+    <script>
+        const button = document.getElementById('toggleTextBtn');
+        const text = document.getElementById('text');
+
+        button.addEventListener('click', function() {
+            if (text.style.display === 'none') {
+                text.style.display = 'block';
+            } else {
+                text.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+====>>>>>>>>>>Calculator program
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="script.css">
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button class="btn" onclick="appendNumber('7')">7</button>
+            <button class="btn" onclick="appendNumber('8')">8</button>
+            <button class="btn" onclick="appendNumber('9')">9</button>
+            <button class="btn" onclick="chooseOperation('/')">/</button>
+
+            <button class="btn" onclick="appendNumber('4')">4</button>
+            <button class="btn" onclick="appendNumber('5')">5</button>
+            <button class="btn" onclick="appendNumber('6')">6</button>
+            <button class="btn" onclick="chooseOperation('*')">*</button>
+
+            <button class="btn" onclick="appendNumber('1')">1</button>
+            <button class="btn" onclick="appendNumber('2')">2</button>
+            <button class="btn" onclick="appendNumber('3')">3</button>
+            <button class="btn" onclick="chooseOperation('-')">-</button>
+
+            <button class="btn" onclick="appendNumber('0')">0</button>
+            <button class="btn" onclick="appendNumber('.')">.</button>
+            <button class="btn" onclick="compute()">=</button>
+            <button class="btn" onclick="chooseOperation('+')">+</button>
+
+            <button class="btn" onclick="clearDisplay()">C</button>
+        </div>
+    </div>
+
+    <script src="dom.js"></script>
+</body>
+</html>
+
+
+=====>>>>>>>>>>>>>calculator css
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+.calculator {
+    width: 220px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#display {
+    width: 100%;
+    height: 50px;
+    font-size: 24px;
+    text-align: right;
+    margin-bottom: 20px;
+    padding-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.btn {
+    padding: 20px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #d8d8d8;
+}
+
+
+============>>>>>>>> javascript
+
+let display = document.getElementById('display');
+let currentInput = '';
+let currentOperation = null;
+let firstOperand = null;
+
+function appendNumber(number) {
+    currentInput += number;
+    display.value = currentInput;
+}
+
+function chooseOperation(operation) {
+    if (currentInput === '') return;
+
+    if (firstOperand === null) {
+        firstOperand = parseFloat(currentInput);
+    } else if (currentOperation) {
+        firstOperand = computeResult();
+    }
+
+    currentOperation = operation;
+    currentInput = '';
+}
+
+function compute() {
+    if (currentInput === '' || currentOperation === null) return;
+
+    const secondOperand = parseFloat(currentInput);
+    const result = computeResult(secondOperand);
+    display.value = result;
+    firstOperand = result;
+    currentInput = '';
+    currentOperation = null;
+}
+
+function computeResult(secondOperand = parseFloat(currentInput)) {
+    let result;
+    switch (currentOperation) {
+        case '+':
+            result = firstOperand + secondOperand;
+            break;
+        case '-':
+            result = firstOperand - secondOperand;
+            break;
+        case '*':
+            result = firstOperand * secondOperand;
+            break;
+        case '/':
+            result = firstOperand / secondOperand;
+            break;
+        default:
+            return;
+    }
+    return result;
+}
+
+function clearDisplay() {
+    currentInput = '';
+    currentOperation = null;
+    firstOperand = null;
+    display.value = '';
+}
+

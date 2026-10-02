@@ -1,0 +1,91 @@
+//to lower case
+const nameArg = capitalize(process.argv[2] || "WORLD");
+console.log(`Hello ${nameArg}!`);
+ 
+function capitalize(str) {
+console.log("Before : ",str);
+    str=str.trim().toLowerCase();
+console.log("After: ",str);
+return str;
+
+}
+
+//Upper case
+const nameArg = capitalize(process.argv[2] || "WORLD");
+console.log(`Hello ${nameArg}!`);
+ 
+function capitalize(str) {
+console.log("Before : ",str);
+    str=str.trim().toUpperCase();
+console.log("After: ",str);
+return str;
+
+}
+
+->this filename is myfirstmodule it is called in next program
+
+exports.myDateTime = function () {
+    return Date();
+  };
+
+->int the below function we are calling myfirstmodule package which we have to develop first
+var http = require('http');
+var dt = require('./myfirstmodule');
+
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.write("The date and time is currently: " + dt.myDateTime());
+  res.end();
+}).listen(2001);
+
+//text file accessing
+var http=require('http');
+var fs=require('fs');
+http.createServer(function(req,res){
+    fs.readFile('demofile.txt',function(err,data){
+        res.writeHead(200,{'content-type':'text/plain'});
+        res.write(data);
+        res.end();
+    });
+}).listen(8000);
+
+//image file accessing
+var http=require('http');
+var fs=require('fs');
+http.createServer(function(req,res){
+    fs.readFile('Kaintalu.jpg',function(err,data){
+        res.writeHead(200,{'Content-type':'image/jpeg'});
+        res.write(data);
+        res.end();
+    });
+}).listen(8080);
+
+
+const http = require("http");
+const url = require("url");
+ 
+const server = http.createServer((req, res) => {
+  const parsedUrl = url.parse(req.url, true);
+ 
+  if (parsedUrl.pathname === "/") {
+res.writeHead(200, { "Content-Type": "text/html" });
+res.write("<h1>Home page!</h1>");
+res.end();
+  } else if (parsedUrl.pathname === "/about") {
+res.writeHead(200, { "Content-Type": "text/html" });
+res.write("<h1>About Us</h1>");
+res.end();
+  } else if (parsedUrl.pathname === "/contact") {
+res.writeHead(200, { "Content-Type": "text/html" });
+res.write("<h1>Contact Us</h1>");
+res.end();
+  } else {
+res.writeHead(404, { "Content-Type": "text/html" });
+res.write("<h1>Page Not Found</h1>");
+res.end();
+  }
+});
+ 
+server.listen(3000, () => {
+  console.log("Server running on http://localhost:3000");
+});

@@ -1,0 +1,70 @@
+program 1
+App.js
+
+import logo from './logo.svg';
+import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+      <h1>Hello World!</h1>
+    </div>
+  );
+}
+
+export default App;
+
+program 2
+Greet.js
+
+import React from 'react'
+function Greet(){
+    return <h1>Hello Vamsi</h1>
+}
+export default Greet
+
+
+App.js 
+
+
+import React,{ Component} from 'react'; 
+
+// import logo from './logo.svg';
+import './App.css';
+import Greet from './Components/Greet'
+class App extends Component{
+    render(){
+        return(
+            <div className='App'>
+                
+                <Greet/>
+		{/* <Greet></Greet> */} Comment in block
+            </div>
+        );
+    }
+}
+export default App
+
+
+program 3 :
+program Arrow functions :
+Arrow functions in React are commonly used to define components, event handlers, and other functions in a concise way. Arrow functions have a shorter syntax than traditional function expressions and automatically bind the this context to the surrounding scope, which is particularly useful in React for handling events.
+
+import React from 'react'
+const Greet=()=><h1>Hello Vamsi</h1>
+export default Greet
+
+program 4:
+we can import the component from any name,but start with Capital letter
+
+import MyComponent from './Components/Greet' 	// in App.js
+
+                <MyComponent />  		// in Greet.js
+
+program 5 :
+comment default export in greet.js
+
+
+import { Greet } from './Components/Greet'   	//in App.js
+
+export const Greet = () => <h1>Hello Vamsi</h1> // in Greet.js	

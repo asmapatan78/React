@@ -1,0 +1,271 @@
+React:
+	-> Open source javascript library
+	-> it's not a new application or it's not a framework.
+	-> Advance implementation of JavaScript
+	-> one file applications
+
+History:
+	-> Created & Maintained by Facebook - Jordan Walke in 2010, first name was FaxJS
+	-> 39.5%
+	-> top 2nd position 
+	-> 1st - NodeJS - 40.8%
+
+How to start with React?
+	-> Install Node from nodejs.org (from the site select the latest stable version (LTS) 20 or 18)
+	-> node --version, npm --version,(Node Package Manager) & npx --version (Node Package Execute)
+	-> Need one editor application - vs code
+
+	-> In Desktop create a new folder as 'React Projects'
+	-> Open that folder in vscode.
+
+	-> npx create-react-app projectname (node package exicutive)
+
+	-> 2 possible errors,
+	-> 'ENOENT' -> npm install create-react-app -g
+	-> 'Network' -> check for the internet and re-run npx
+
+	-> We need to check the project, we need to run and check the output.
+	-> npm start (node package manager)
+
+
+-> If you want to create a new page or style, we need to create a new file in html. but in react, we need to create a new components.
+
+
+Components:
+	-> components are the new js file, which will return the html command to App.js
+
+Types:
+	-> 1.stateless functinal components  2.stateful class components
+	-> 1.stateless functinal components
+		-> we will have function syntax in the new js file(components)
+
+		-> create a new file as Greet.js inside components folder.
+		-> we need to import the react
+			import React from 'react';
+		-> we need to create the function, use the keyword function
+			-> one tag return
+			function functionName(){
+				return tag;
+			}
+			or
+			-> multiple tag return
+			function functionName(){
+				return(
+				<div>
+					all the tags
+				</div>
+				);
+			}
+
+ export default Mass;
+
+
+		-> we need to map the new js file with App.js, we are going to use import & export method
+			-> export your new js file, with exportName -> same as functionName 
+				export default exportName;
+
+			-> import the exported file in App.js
+				import exportName from './components/Greet'
+
+		-> Last step is to create a new tag inside App.js div section with the same name as exportName.
+			<div className='App'>
+				<exportName/>
+			</div>
+
+
+
+App.js
+// import logo from './logo.svg';
+import './App.css';
+import Mass from './one';
+function App() {
+  return (
+    <div className="App">
+      <h1>Hello</h1>
+      <p>Welcome to React</p>
+      <Mass></Mass>
+    </div>
+  );
+}
+
+export default App;
+
+
+one.js
+
+import React from 'react';
+function Mass() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <h1>Classes</h1>
+          <a>
+            Learn React from vamsi sir class
+          </a>
+          
+        </header>
+      </div>
+    );
+  }
+  
+ 
+
+
+	-> stateful class components
+		-> we will have class syntax in the new js file(components)
+
+		-> create a new js file named as Welcome.js
+		-> import the required packages
+			import React,{Component} from 'react';
+		-> we need to create a class
+			-> one tag return
+			class className extends Component{
+				render(){
+					return tag;
+				}
+			}
+
+			-> multiple tag return
+			class className extends Component{
+				render(){
+					return(
+					<div>
+						all the tags
+					</div>
+					);
+				}
+			}
+
+		-> we need to map the new js file with App.js, we are going to use import & export method
+			-> export your new js file, with exportName -> same as className 
+				export default exportName;
+
+			-> import the exported file in App.js
+				import exportName from './components/Welcome'
+
+		-> Last step is to create a new tag inside App.js div section with the same name as exportName.
+			<div className='App'>
+				<exportName/>
+			</div>
+
+Functional Component Props:
+	-> props - properties
+	-> in functional components, if you need to pass a value, we need create a new attribute in the function tag with a value.
+		<Greet name="Vamsi Mitra"/>
+		<Greet name="Pawan Kalyan"/>
+
+	-> we need to change the Greet.js component
+	in the function arguments, use props keyword
+		function functionName(props){
+			return {props.attributeName}
+		}
+
+		Eg.
+		function Greet(props){
+			return(
+			<div>
+				<h1>Welcome {props.name}</h1>
+			</div>
+			);
+		}
+
+program-2
+App.js
+// import logo from './logo.svg';
+import './App.css';
+import Mass from './one';
+function App() {
+  return (
+    <div className="App">
+     <h2>Hello</h2>
+     <p>Welcome to React</p> 
+      <Mass></Mass>
+    </div>
+  );
+}
+
+export default App;
+
+
+one.js
+import React from 'react';
+
+// Define the Greet component
+function Greet(props) {
+  return (
+    <div>
+      <h2>Welcome {props.name}</h2>
+    </div>
+  );
+}
+
+// Main component
+function Mass() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>React Classes</h1>
+        {/* Use the Greet component and pass the name prop */}
+        <Greet name="Vamsi Mitra" />
+        {/* Example of an inline function - corrected */}
+        {functionName({ attributeName: 'example' })}
+        <a href="#learn">
+          Learn React from Vamsi sir's class
+        </a>
+      </header>
+    </div>
+  );
+}
+
+// Correct definition of functionName
+function functionName(props) {
+  return <div>{props.attributeName}</div>;
+}
+
+export default Mass;
+
+app.css
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #97b8e6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+h1{
+  color: rgb(123, 112, 241);
+}
+
+
+

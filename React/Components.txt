@@ -1,0 +1,120 @@
+Components:
+	-> components are the new js file, which will return the html command to App.js
+
+Types:
+	-> stateless functinal components
+		->functional components are just JavaScript functions.
+		->that accepts input of properties and returns html that describes UI
+		-> we will have function syntax in the new js file(components)
+
+		-> create a new file as Greet.js inside components folder.
+		-> we need to import the react
+			import React from 'react';
+		-> we need to create the function, use the keyword function
+			-> one tag return
+			function functionName(){
+				return tag;
+			}
+			or
+			-> multiple tag return
+			function functionName(){
+				return(
+				<div>
+					all the tags
+				</div>
+				);
+			}
+
+greet.js in component folder:
+
+Normal function:
+
+import React from 'react'
+
+function greet(){
+    return(
+        <h1>Hello world</h1>
+    );
+}
+
+export default greet;
+
+Using arrow functions in greet.js
+import React from 'react'
+
+const greet =()=>{
+    return(
+        <h1>Hello Immu</h1>
+    );
+}
+
+export default greet;
+			
+App.js:
+
+import './App.css';
+import Greet from './component/greet'
+
+function demo(){
+  return(
+    <>
+      <Greet></Greet>
+    </>
+  );
+}
+export default demo;
+
+Note:->we can import the component with any name in App.js import statement
+EX:import Myworld from './component/greet'
+while using the component we have to use the same name given in import statement
+		
+
+		-> we need to map the new js file with App.js, we are going to use import & export method
+			-> export your new js file, with exportName -> same as functionName 
+				export default exportName;
+
+			-> import the exported file in App.js
+				import exportName from './components/Greet'
+
+		-> Last step is to create a new tag inside App.js div section with the same name as exportName.
+			<div className='App'>
+				<exportName/>
+			</div>
+
+
+	-> stateful class components
+		-> we will have class syntax in the new js file(components)
+
+		-> create a new js file named as Welcome.js
+		-> import the required packages
+			import React,{Component} from 'react';
+		-> we need to create a class
+			-> one tag return
+			class className extends Component{
+				render(){
+					return tag;
+				}
+			}
+
+			-> multiple tag return
+			class className extends Component{
+				render(){
+					return(
+					<div>
+						all the tags
+					</div>
+					);
+				}
+			}
+
+		-> we need to map the new js file with App.js, we are going to use import & export method
+			-> export your new js file, with exportName -> same as className 
+				export default exportName;
+
+			-> import the exported file in App.js
+				import exportName from './components/Welcome'
+
+		-> Last step is to create a new tag inside App.js div section with the same name as exportName.
+			<div className='App'>
+				<exportName/>
+			</div>

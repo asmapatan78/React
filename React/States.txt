@@ -1,0 +1,396 @@
+State
+State is a built-in React object used to manage and track data that changes over time within a component.
+Unlike props, state is mutable and can be updated using the setState method (or state updater function in functional components using the useState hook).
+When state changes, the component re-renders to reflect the updated data.
+
+
+
+->state is nothing but a variable declared within the body
+
+
+props VS state:
+props:
+	->props get passed to the component
+	->function parameters
+	->props are immutable
+	
+	->props are accessed by using
+	->props keyword in - functional components
+	->this.props in - class components
+	
+	
+state:
+	->state is managed within the component
+	->variables declared in the function body
+	->state can be changed
+	
+->states are accessed by using
+	->useState Hook in - functional components
+	->this.state in class components
+
+How the state should be changed:
+
+->By using functional component:
+
+greet.js:
+
+import React, { useState } from 'react';
+
+function Message() {
+    const [message, setMessage] = useState('Pawan Kalyan');
+
+    const changeMessage = () => {
+        setMessage('Deputy Chief Minister');
+    }
+
+    return (
+        <div>
+            <h1>Happy Birthday {message}</h1>
+            <button onClick={changeMessage}>Click Me</button>
+        </div>
+    );
+}
+
+export default Message;
+
+App.js: 
+
+App.js:
+
+import './App.css';
+import React from 'react'
+import  Greet from './component/Greet'
+
+function demo(){
+  return(
+    <Greet/>
+  )
+}
+export default demo;
+
+Question 2.
+
+->By using class components:
+
+greet.js:
+
+import React ,{Component} from 'react'
+class Message extends Component{
+    constructor(){
+        super()
+        this.state={
+            Message:'Pawan Kalyan'
+        }
+    }
+    changeMessage(){
+        this.setState({
+            Message:'Deputy Cheif Minister'
+        })
+    }
+    render(){
+        return(
+            <div>
+                <h1>Happy Birthday {this.state.Message}</h1>
+                <button onClick={()=>this.changeMessage()}>Click Me</button>
+            </div>
+        )
+    }
+}
+
+export default Message;
+
+App.js:
+
+import './App.css';
+import React from 'react'
+import  Greet from './component/greet'
+
+function demo(){
+  return(
+    <Greet/>
+  )
+}
+export default demo;
+
+
+->Button increment project by using class component
+  Another example for set state.
+
+Question 3.
+Counter project.
+
+->greet.js
+
+import React ,{Component} from 'react'
+class Counter extends Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            count: 0
+        }
+    }
+
+    increment(){
+        this.setState({
+            count: this.state.count + 1
+        })
+    }
+    render(){
+        return(
+            <div>
+                <h1>Count - {this.state.count}</h1>
+                <button onClick={()=> this.increment()}>Increment</button>
+            </div>
+        )
+    }
+
+}
+export default Counter;
+
+
+App.js:
+
+import './App.css';
+import React from 'react'
+import Counter from './component/greet';
+
+function demo(){
+  return(
+    <Counter/>
+  )
+}
+export default demo;
+
+
+
+
+Destructing props and states:
+
+->Destructing is an ES6 feature that makes it possible 
+
+->to unpack values from arrays  (or)
+->properties from objects.
+
+into distinct(separate or unique) variables
+
+In react Destructing props and states code readability.
+
+By using functional components:
+
+There are 2 ways to Destructure props in a functional components.
+
+1st-> To destructure it in the function parameter itself
+2nd-> To destructure in the function body
+
+
+
+Question 4.
+1st way:
+
+greet.js:
+import React from 'react'
+
+function Greet({name, heroname}){
+    return(
+        <div>
+            <h1>Hello {name} also known as {heroname}</h1>
+        </div>
+    );
+}
+export default Greet;
+
+App.js:
+import './App.css';
+import React from 'react'
+import  Greet from './component/greet'
+
+function demo(){
+  return(
+    <>
+      <Greet name="Pawankalyan" heroname="Power Star">
+        <p>This is a children Prop</p>
+        <p>Deputy CM of AP</p>
+      </Greet>
+      <Greet name="Chiru" heroname="Mega Star">
+        <p>Brother of Pawan Kalyan</p>
+      </Greet>
+      <Greet name="Ram Charan" heroname="Mega Power Star"></Greet>
+    </>
+  );
+}
+export default demo;
+
+
+Question 5.
+->2nd way:
+
+greet.js:
+
+function Greet(props){
+    const {name,heroname} = props
+    return(
+        <div>
+            <h1>Hello {name} also known as {heroname}</h1>
+        </div>
+    );
+}
+export default Greet;
+
+
+App.js is same as 1st method.
+
+
+Now Will see how to destruct the props by using class components
+
+-> In class component we generally tend to destructure props and states in the render method.
+
+
+Question 6.
+
+welcome.js:
+
+import React,{Component} from 'react'
+
+class Greet extends Component{
+    render(){
+        const {name, heroname} = this.props
+        return(
+            <h1>Happy Birthday {name} also known as {heroname}</h1>
+        )
+    }
+}
+export default Greet
+
+App.js:
+
+import './App.css';
+import React from 'react'
+import Greet from './Components/Greet'
+
+function demo(){
+  return(
+    <>
+      <Greet name="Pawankalyan" heroname="Power Star"></Greet>
+    </>
+  );
+}
+export default demo;
+
+
+Now will see about destructing state:
+
+Question 8
+
+Destructing state by using functional components:
+
+greet.js:
+
+import React, { useState } from 'react';
+
+function Person() {
+    // Using useState hook to manage state
+    const [person, setPerson] = useState({
+        firstName: 'Pawan',
+        lastName: 'Kalyan',
+        heroName: 'Power Star'
+    });
+
+    // Destructuring state
+    const { firstName, lastName, heroName } = person;
+
+    const changeName = () => {
+        setPerson({
+            firstName: 'Deputy',
+            lastName: 'Cheif Minister',
+            heroName: 'Andhra Pradesh'
+        });
+    }
+
+    return (
+        <div>
+            <h1>Happy Birthday {heroName} {firstName} {lastName}</h1>
+            <button onClick={changeName}>Change Name</button>
+        </div>
+    );
+}
+
+export default Person;
+
+App.js:
+
+import './App.css';
+import React from 'react';
+import Person from './component/Greet';
+
+function App() {
+  return (
+    <>
+      <Person></Person>
+    </>
+  );
+}
+
+export default App;
+
+Question 9
+By using class components:
+
+greet.js:
+
+import React, { Component } from 'react';
+
+class PersonClass extends Component {
+    constructor() {
+        super();
+        // Initializing state
+        this.state = {
+            firstName: 'Pawan',
+            lastName: 'Kalyan',
+            heroName: 'Power Star'
+        };
+    }
+
+    changeName = () => {
+        this.setState({
+            firstName: 'Ram',
+            lastName: 'Charan',
+            heroName: 'Mega Power Star'
+        });
+    }
+
+    render() {
+        // Destructuring state
+        const { firstName, lastName, heroName } = this.state;
+
+        return (
+            <div>
+                <h1>Hello {firstName} {lastName} also known as {heroName}</h1>
+                <button onClick={this.changeName}>Change Name</button>
+            </div>
+        );
+    }
+}
+
+export default PersonClass
+
+
+App.js:
+
+import './App.css';
+import React from 'react';
+import PersonClass from './component/Greet';
+// import Person from './component/welcome';
+
+function App() {
+  return (
+    <>
+      {/* <Greet name="Pawankalyan" heroname="Power Star">
+        <p>This is a children Prop</p>
+        <p>Deputy CM of AP</p>
+      </Greet> */}
+      <PersonClass/>
+    </>
+  );
+}
+
+export default App; 

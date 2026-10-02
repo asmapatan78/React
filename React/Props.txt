@@ -1,0 +1,97 @@
+Props: like attributes(like id,type)
+
+->props are nothing but properties
+->it is an optional input for html components
+->to make it as dynamic
+
+->properties are attributes to the html tags
+
+
+-Q1.>By using functional components:
+
+Greet.js:
+
+import React from 'react'
+function Greet(props){
+    return <h1>Hello {props.name}</h1>
+}
+export default Greet
+
+
+App.js:
+
+//import React,{ Component} from 'react'; 
+
+// import logo from './logo.svg';
+import './App.css';
+import React from 'react'
+import Greet from './Components/Greet'
+function demo(){
+    return(
+      <>
+        <Greet name="P.vamsi"></Greet>
+        <Greet name="sumanth"></Greet>
+        <Greet name="abhi"></Greet>
+      </>
+    );
+  }
+export default demo
+
+Q2.->By using class components
+
+greet.js:
+import React,{Component} from 'react'
+
+class Greet extends Component{
+    render(){
+        return <h1>Hello {this.props.name}</h1>
+    }
+}
+export default Greet;
+
+App.js same as functional component.
+
+Another Example:
+
+
+
+Q3.How to Use children props
+
+greet.js:
+import React from 'react'
+
+function Greet(props){
+    return(
+        <div>
+            <h1>Hello {props.name} also known as {props.heroname}</h1>
+            <p>{props.children}</p>
+        </div>
+    );
+}
+export default Greet;
+
+
+App.js:
+
+//import React,{ Component} from 'react'; 
+
+// import logo from './logo.svg';
+import './App.css';
+import React from 'react'
+import Greet from './Components/Greet'
+function demo(){
+    return(
+      <>
+        <Greet name="Pawankalyan" heroname="Power Star">
+          <p>This is a children Prop</p>
+          <p>Deputy CM of AP</p>
+        </Greet>
+        <Greet name="Chiru" heroname="Mega Star">
+          <p>Brother of Pawan Kalyan</p>
+        </Greet>
+        
+        <Greet name="Ram Charan" heroname="Mega Power Star"></Greet>
+      </>
+    );
+  }
+  export default demo;

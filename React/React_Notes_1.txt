@@ -1,0 +1,148 @@
+React:
+	-> Open source javascript library
+	-> it's not a new application or it's not a framework.
+	-> Advance implementation of JavaScript
+	-> one file applications
+
+History:
+	-> Created & Maintained by Facebook - Jordan Walke in 2010, first name was FaxJS
+	-> 39.5%
+	-> top 2nd position 
+	-> 1st - NodeJS - 40.8%
+
+How to start with React?
+	-> Install Node from nodejs.org (from the site select the latest stable version (LTS) 20 or 18)
+	-> node --version, npm --version,(Node Package Manager) & npx --version (Node Package Execute)
+	-> Need one editor application - vs code
+
+	-> In Desktop create a new folder as 'React Projects'
+	-> Open that folder in vscode.
+
+	-> npx create-react-app projectname (node package exicutive)
+
+	-> 2 possible errors,
+	-> 'ENOENT' -> npm install create-react-app -g
+	-> 'Network' -> check for the internet and re-run npx
+
+	-> We need to check the project, we need to run and check the output.
+	-> npm start (node package manager)
+
+
+-> If you want to create a new page or style, we need to create a new file in html. but in react, we need to create a new components.
+
+
+Components:
+	-> components are the new js file, which will return the html command to App.js
+
+Types:
+	-> 1.stateless functinal components  2.stateful class components
+	-> 1.stateless functinal components
+		-> we will have function syntax in the new js file(components)
+
+		-> create a new file as Greet.js inside components folder.
+		-> we need to import the react
+			import React from 'react';
+		
+-> we need to create the function, use the keyword function
+			-> one tag return
+			function functionName(){
+				return tag;
+			}
+
+
+			or
+			-> multiple tag return
+			function demo(){
+				return(
+				<div>
+					all the tags
+				</div>
+				);
+			}
+
+ 			export default demo;
+
+
+		-> we need to map the new js file with App.js, we are going to use import & export method
+			-> export your new js file, with exportName -> same as functionName 
+				export default exportName;
+
+			-> import the exported file in App.js
+				import exportName from './components/Greet'
+
+		-> Last step is to create a new tag inside App.js div section with the same name as exportName.
+			<div className='App'>
+				<exportName/>
+			</div>
+
+Programs :
+program 1
+App.js
+
+import logo from './logo.svg';
+import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+      <h1>Hello World!</h1>
+    </div>
+  );
+}
+
+export default App;
+
+program 2
+Greet.js
+
+import React from 'react'
+function Greet(){
+    return <h1>Hello Vamsi</h1>
+}
+export default Greet
+
+
+App.js 
+
+
+import React,{ Component} from 'react'; 
+
+// import logo from './logo.svg';
+import './App.css';
+import Greet from './Components/Greet'
+class App extends Component{
+    render(){
+        return(
+            <div className='App'>
+                
+                <Greet/>
+		{/* <Greet></Greet> */} Comment in block
+            </div>
+        );
+    }
+}
+export default App
+
+
+program 3 :
+program Arrow functions :
+Arrow functions in React are commonly used to define components, event handlers, and other functions in a concise way. Arrow functions have a shorter syntax than traditional function expressions and automatically bind the this context to the surrounding scope, which is particularly useful in React for handling events.
+
+import React from 'react'
+const Greet=()=><h1>Hello Vamsi</h1>
+export default Greet
+
+program 4:
+we can import the component from any name,but start with Capital letter
+
+import MyComponent from './Components/Greet' 	// in App.js
+
+                <MyComponent />  		// in Greet.js
+
+program 5 :
+comment default export in greet.js
+
+
+import { Greet } from './Components/Greet'   	//in App.js
+
+export const Greet = () => <h1>Hello Vamsi</h1> // in Greet.js	
